@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router';
+import { Route } from 'react-router';
+import Store from './store'
 import './App.css';
+import Home from './components/Home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Habitually Successful
-        </h1>
-      </header>
-      <main className="main">
-        <p className="content">This will be split into two flexbox spots with information on habits</p>
-        <p className="content">This spot will be a form for signing in</p>
-      </main>
-      <footer className="footer">
-        Kenneth Landis copyright thing
-      </footer>
-    </div>
-  );
+class App extends Component {
+  state = {
+    users: [],
+    habits: []
+  };
+
+  componentDidMount() {
+    this.setState({
+      users: Store.users,
+      habits: Store.habits
+    })
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>
+            Habitually Successful
+          </h1>
+        </header>
+        <Route
+          exact
+          key={'/'}
+          path={'/'}
+          component={Home}
+        />
+        <footer className="footer">
+          Kenneth Landis copyright thing
+        </footer>
+      </div>
+    );
+  };
 }
 
 export default App;
