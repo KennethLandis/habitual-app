@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import Store from './store'
 import './App.css';
-import Home from './components/Home'
+import Home from './components/Home';
+import SignUp from './components/Sign-up';
 
 class App extends Component {
   state = {
@@ -30,6 +31,12 @@ class App extends Component {
           key={'/'}
           path={'/'}
           component={Home}
+        />
+        <Route
+          exact
+          key={'/signup'}
+          path={'/signup'}
+          component={SignUp}
         />
         <footer className="footer">
           Kenneth Landis copyright thing

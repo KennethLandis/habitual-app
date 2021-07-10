@@ -1,4 +1,5 @@
 import React, { Component }from 'react';
+import { Link } from 'react-router-dom';
 
 class SignIn extends Component {
     constructor(props) {
@@ -77,7 +78,7 @@ class SignIn extends Component {
                         className="sign-in-submit"
                         //disabled={this.validateName() && this.validatePassword()}
                     >Sign In</button>
-                    <p>If you are a new user sign up</p>
+                    <p>If you are a new user <Link to={'/signup'}>sign up</Link></p>
                 </div>
             </form>
         )
