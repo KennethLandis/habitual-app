@@ -6,6 +6,7 @@ import Home from './components/Home';
 import SignUp from './components/Sign-up';
 import UserPage from './components/User-page';
 import HabitContext from './HabitContext';
+import AddHabit from './components/Add-Habit';
 
 class App extends Component {
   state = {
@@ -30,6 +31,12 @@ class App extends Component {
     })
   }
 
+  signOut = () => {
+    this.setState({
+      targetUser: []
+    })
+  }
+
   deleteHabit = habitId => {
     const newHabits = this.state.habits.filter(habit =>
       habit.habit_id !== habitId
@@ -51,6 +58,7 @@ class App extends Component {
     this.setState({
       targetUser: newUser
     })
+    
   }
   
   componentDidMount() {
@@ -69,9 +77,10 @@ class App extends Component {
       addUser: this.addUser,
       addHabit: this.addHabit,
       deleteHabit: this.deleteHabit,
-      habitComplete: this.habitComplete
+      habitComplete: this.habitComplete,
+      signOut: this.signOut
     }
-    console.log(this.state.users)
+
     return (
       <HabitContext.Provider value={contextValue}>
       <div className="App">
@@ -97,6 +106,12 @@ class App extends Component {
           key={'/user/:userId'}
           path={'/user/:userId'}
           component={UserPage}
+        />
+        <Route
+          exact
+          key={'/add-habit'}
+          path ={'/add-habit'}
+          component={AddHabit}
         />
         <footer className="footer">
           Kenneth Landis copyright thing

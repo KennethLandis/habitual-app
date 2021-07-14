@@ -54,16 +54,16 @@ const Store = {
             "userId": '2'
         },
         {
-            "habit_id": 7,
+            "habit_id": '7',
             "habit_name": "Complete javascript problems",
             "days_completed": 2,
-            "userId": 2
+            "userId": '2'
         },
         {
-            "habit_id": 8,
+            "habit_id": '8',
             "habit_name": "Farm for golden hand",
             "days_completed": 1,
-            "userId": 2
+            "userId": '2'
         }
     ]
 }

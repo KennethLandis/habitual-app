@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { userHabits, findUser } from '../find-functions'
+import { Link } from 'react-router-dom';
+import { userHabits, findUser } from '../find-functions';
 import HabitContext from '../HabitContext';
-import Habit from './Habit'
+import Habit from './Habit';
 
 class UserPage extends Component {
     static defaultProps = {
@@ -11,6 +12,10 @@ class UserPage extends Component {
     }
     static contextType = HabitContext;
     
+    signOut = () => {
+        this.context.signOut();
+        this.props.history.push('/')
+    }
 
     render() {
         const user = this.props.match.params
@@ -18,15 +23,16 @@ class UserPage extends Component {
         const habits = this.context.habits
         const displayHabits = userHabits(habits, user.userId)
         const targetUser = findUser(users, user.userId)
-        console.log(targetUser)
         return (
             <section className='userPage'>
                 <h3>Welcome {targetUser.user_name}!  Manage your Habits below!</h3>
+                <Link to="/add-habit">Add Habit</Link>
+                <button className='sign-out' type='button' onClick={() => this.signOut()}>Sign Out</button>
                 <ul>
                 {displayHabits.map(habit =>
-                    <li key={habit.id}>
+                    <li key={habit.habit_id}>
                         <Habit
-                            id={habit.id}
+                            id={habit.habit_id}
                             name={habit.habit_name}
                             daysCompleted={habit.days_completed}
                         />

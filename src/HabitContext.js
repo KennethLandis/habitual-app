@@ -8,5 +8,6 @@ export default React.createContext({
     addUser: () => {},
     addHabit: () => {},
     deleteHabit: () => {},
-    habitComplete: () => {}
+    habitComplete: () => {},
+    signOut: () => {}
 })

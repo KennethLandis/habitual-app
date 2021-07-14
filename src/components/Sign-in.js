@@ -52,8 +52,6 @@ class SignIn extends Component {
         const password = this.state.password.value;
         const users = this.context.users
         const targetUser = findUserByName(users, user_name)
-        console.log(this.context.users)
-        console.log(targetUser)
         if(targetUser === undefined) {
             alert('No User found')
             return;
