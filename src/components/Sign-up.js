@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HabitContext from '../HabitContext';
 
 class SignUp extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class SignUp extends Component {
             }
         }
     }
+    static contextType = HabitContext;
 
     updateName(user_name) {
         this.setState({ user_name: { value: user_name, touched: true}})
@@ -34,10 +36,11 @@ class SignUp extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const newUser = {
+            userId: (this.context.users.length + 1).toString(),
             user_name: e.target['user_name'].value,
-            password: e.target['password'].value
+            user_password: e.target['password'].value
         }
-        console.log(newUser)
+        this.context.addUser(newUser)
         this.props.history.push('/');
         alert('User Created! Now you can sign in.')
     }
@@ -64,8 +67,8 @@ class SignUp extends Component {
     }
 
     render() {
-        const nameError = this.validateName();
-        const passError = this.validatePassword();
+        //const nameError = this.validateName();
+        //const passError = this.validatePassword();
         return (
             <form className = "sign-up" onSubmit={e => this.handleSubmit(e)}>
                 <h2>Sign up</h2>

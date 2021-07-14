@@ -6,7 +6,7 @@ class Home extends Component {
         return (
             <main className="main">
           <p className="content">This will be split into two flexbox spots with information on habits</p>
-          <SignIn className="content"></SignIn>
+          <SignIn className="content" history = {this.props.history}></SignIn>
         </main>
         )
     }

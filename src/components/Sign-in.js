@@ -1,5 +1,8 @@
 import React, { Component }from 'react';
+
 import { Link } from 'react-router-dom';
+import HabitContext from '../HabitContext';
+import { findUserByName } from '../find-functions';
 
 class SignIn extends Component {
     constructor(props) {
@@ -12,9 +15,10 @@ class SignIn extends Component {
             password: {
                 value: '',
                 touched: false
-            }
+            },
         }
     }
+    static contextType = HabitContext;
 
     updateName(user_name) {
         this.setState({ user_name: { value: user_name, touched: true}})
@@ -46,8 +50,22 @@ class SignIn extends Component {
         e.preventDefault();
         const user_name = this.state.user_name.value;
         const password = this.state.password.value;
-        console.log(user_name)
-        console.log(password)
+        const users = this.context.users
+        const targetUser = findUserByName(users, user_name)
+        console.log(this.context.users)
+        console.log(targetUser)
+        if(targetUser === undefined) {
+            alert('No User found')
+            return;
+        }
+        if(targetUser.user_password === password) {
+            this.context.setUser(targetUser)
+            this.props.history.push(`/user/${targetUser.userId}`)
+        }
+        if(targetUser.user_password !== password) {
+            alert('User Data does not match anyone in database!')
+        }
+        
     }
 
     render() {
