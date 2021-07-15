@@ -26,9 +26,9 @@ class UserPage extends Component {
         return (
             <section className='userPage'>
                 <h3>Welcome {targetUser.user_name}!  Manage your Habits below!</h3>
-                <Link to="/add-habit">Add Habit</Link>
+                <Link className="link" to="/add-habit">Add Habit</Link><br></br>
                 <button className='sign-out' type='button' onClick={() => this.signOut()}>Sign Out</button>
-                <ul>
+                <ul className="habit-list">
                 {displayHabits.map(habit =>
                     <li key={habit.habit_id}>
                         <Habit

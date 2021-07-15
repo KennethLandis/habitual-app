@@ -78,7 +78,7 @@ class SignIn extends Component {
                         className="sign-in-control"
                         name="user-name"
                         id="user-name"
-                        onChange={e => this.updateName(e.target.value)}/>
+                        onChange={e => this.updateName(e.target.value)}/><br></br>
                         {this.state.user_name.touched}
                     <label htmlFor="password">Password: </label>
                     <input
@@ -94,7 +94,7 @@ class SignIn extends Component {
                         className="sign-in-submit"
                         //disabled={this.validateName() && this.validatePassword()}
                     >Sign In</button>
-                    <p>If you are a new user <Link to={'/signup'}>sign up</Link></p>
+                    <p>If you are a new user <Link className="link" to={'/signup'}>sign up</Link></p>
                 </div>
             </form>
         )

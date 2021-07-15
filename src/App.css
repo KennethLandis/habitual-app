@@ -19,7 +19,7 @@
   color: white;
   font-size: 25px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -32,4 +32,36 @@
 
 .footer {
   color: white;
+}
+
+.habit-list {
+  list-style: none;
+}
+
+.habit {
+  background-color: slategray;
+  padding: 20px;
+  margin: 10px;
+  margin-right: 40px;
+}
+
+h3 {
+  color: white;
+}
+
+.link {
+  text-decoration: underline;
+  color: white;
+}
+
+.add-habit {
+  color: white;
+}
+
+.sign-up {
+  color: white;
+}
+
+.button {
+  margin: 5px;
 }
