@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import Store from './store'
 import './App.css';
 import Home from './components/Home';
 import SignUp from './components/Sign-up';
@@ -10,16 +9,36 @@ import AddHabit from './components/Add-Habit';
 
 class App extends Component {
   state = {
-    users: [],
+    clients: [],
     habits: [],
-    targetUser: []
+    targetClient: []
   };
 
-  addUser = newUser => {
-    const newUsers = this.state.users
-    newUsers.push(newUser)
+  componentDidMount() {
+    const api_url = process.env.REACT_APP_API_URL
+    console.log(api_url)
+    Promise.all([
+      fetch(`${api_url}/clients`),
+      fetch(`${api_url}/habits`)
+    ])
+      .then(([Res1, Res2]) => {
+        if (!Res1.ok)
+          return Res1.json().then(e => Promise.reject(e))
+        if (!Res2.ok)
+          return Res2.json().then(e => Promise.reject(e))
+        return Promise.all([Res1.json(), Res2.json()]);
+      })
+      .then(([clients1, habits1]) => this.setState({
+        clients: clients1,
+        habits: habits1}))
+    
+  };
+
+  addClient = newClient => {
+    const newClients = this.state.clients
+    newClients.push(newClient)
     this.setState({
-      users: newUsers
+      clients: newClients
     })
   }
 
@@ -33,13 +52,13 @@ class App extends Component {
 
   signOut = () => {
     this.setState({
-      targetUser: []
+      targetClient: []
     })
   }
 
   deleteHabit = habitId => {
     const newHabits = this.state.habits.filter(habit =>
-      habit.habit_id !== habitId
+      habit.id !== habitId
       )
     this.setState({
       habits: newHabits
@@ -47,34 +66,28 @@ class App extends Component {
   }
 
   habitComplete = (habitId) => {
+    
     this.setState(prevState => ({
       habits: prevState.habits.map(
-        habit => habit.habit_id === habitId ? {...habit, days_completed: (habit.days_completed + 1)}: habit
+        habit => habit.id === habitId ? {...habit, days_completed: (habit.days_completed + 1)}: habit
       )
     }))
   }
 
-  setUser = newUser => {
+  setClient = newClient => {
     this.setState({
-      targetUser: newUser
+      targetClient: newClient
     })
     
   }
-  
-  componentDidMount() {
-    this.setState({
-      users: Store.users,
-      habits: Store.habits
-    })
-  };
 
   render() {
     const contextValue = {
-      users: this.state.users,
+      clients: this.state.clients,
       habits: this.state.habits,
-      targetUser: this.state.targetUser,
-      setUser: this.setUser,
-      addUser: this.addUser,
+      targetClient: this.state.targetClient,
+      setClient: this.setClient,
+      addClient: this.addClient,
       addHabit: this.addHabit,
       deleteHabit: this.deleteHabit,
       habitComplete: this.habitComplete,
@@ -103,8 +116,8 @@ class App extends Component {
         />
         <Route
           exact
-          key={'/user/:userId'}
-          path={'/user/:userId'}
+          key={'/user/:client_id'}
+          path={'/user/:client_id'}
           component={UserPage}
         />
         <Route

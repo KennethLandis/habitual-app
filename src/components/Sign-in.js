@@ -2,17 +2,17 @@ import React, { Component }from 'react';
 
 import { Link } from 'react-router-dom';
 import HabitContext from '../HabitContext';
-import { findUserByName } from '../find-functions';
+import { findClientByName } from '../find-functions';
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_name: {
+            client_name: {
                 value: '',
                 touched: false
             },
-            password: {
+            user_password: {
                 value: '',
                 touched: false
             },
@@ -20,16 +20,16 @@ class SignIn extends Component {
     }
     static contextType = HabitContext;
 
-    updateName(user_name) {
-        this.setState({ user_name: { value: user_name, touched: true}})
+    updateName(client_name) {
+        this.setState({ client_name: { value: client_name, touched: true}})
     }
 
-    updatePassword(password) {
-        this.setState({ password: { value: password, touched: true}})
+    updatePassword(user_password) {
+        this.setState({ user_password: { value: user_password, touched: true}})
     }
 
     validateName() {
-        const name = this.state.user_name.value.trim();
+        const name = this.state.client_name.value.trim();
         if (name.length === 0) {
             return "Name is required";
         } else if (name.length > 12) {
@@ -38,7 +38,7 @@ class SignIn extends Component {
     }
 
     validatePassword() {
-        const passValidate = this.state.password.value.trim();
+        const passValidate = this.state.user_password.value.trim();
         if (passValidate.length === 0) {
             return "Password is required";
         } else if (passValidate.length > 20) {
@@ -48,19 +48,19 @@ class SignIn extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const user_name = this.state.user_name.value;
-        const password = this.state.password.value;
-        const users = this.context.users
-        const targetUser = findUserByName(users, user_name)
-        if(targetUser === undefined) {
+        const client_name = this.state.client_name.value;
+        const password = this.state.user_password.value;
+        const clients = this.context.clients
+        const targetClient = findClientByName(clients, client_name)
+        if(targetClient === undefined) {
             alert('No User found')
             return;
         }
-        if(targetUser.user_password === password) {
-            this.context.setUser(targetUser)
-            this.props.history.push(`/user/${targetUser.userId}`)
+        if(targetClient.user_password === password) {
+            this.context.setClient(targetClient)
+            this.props.history.push(`/user/${targetClient.id}`)
         }
-        if(targetUser.user_password !== password) {
+        if(targetClient.user_password !== password) {
             alert('User Data does not match anyone in database!')
         }
         
@@ -79,7 +79,7 @@ class SignIn extends Component {
                         name="user-name"
                         id="user-name"
                         onChange={e => this.updateName(e.target.value)}/><br></br>
-                        {this.state.user_name.touched}
+                        {this.state.client_name.touched}
                     <label htmlFor="password">Password: </label>
                     <input
                         type="text"
@@ -87,7 +87,7 @@ class SignIn extends Component {
                         name="password"
                         id="password"
                         onChange={e => this.updatePassword(e.target.value)}/><br></br>
-                        {this.state.password.touched}
+                        {this.state.user_password.touched}
                     <button className="sign-in-reset" type="reset"> Reset </button>
                     <button
                         type="submit"

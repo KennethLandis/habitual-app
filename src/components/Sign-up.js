@@ -5,11 +5,11 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_name: {
+            client_name: {
                 value: '',
                 touched: false
             },
-            password: {
+            user_password: {
                 value: '',
                 touched: false
             },
@@ -21,12 +21,12 @@ class SignUp extends Component {
     }
     static contextType = HabitContext;
 
-    updateName(user_name) {
-        this.setState({ user_name: { value: user_name, touched: true}})
+    updateName(client_name) {
+        this.setState({ client_name: { value: client_name, touched: true}})
     }
 
-    updatePassword(password) {
-        this.setState({ password: { value: password, touched: true}})
+    updatePassword(user_password) {
+        this.setState({ user_password: { value: user_password, touched: true}})
     }
 
     updateRe_pass(re_pass) {
@@ -36,8 +36,8 @@ class SignUp extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const newUser = {
-            userId: (this.context.users.length + 1).toString(),
-            user_name: e.target['user_name'].value,
+            userId: (this.context.clients.length + 1).toString(),
+            client_name: e.target['user_name'].value,
             user_password: e.target['password'].value
         }
         this.context.addUser(newUser)
@@ -46,14 +46,14 @@ class SignUp extends Component {
     }
 
     validateName() {
-        const name = this.state.user_name.value.trim();
+        const name = this.state.client_name.value.trim();
         if (name.length === 0) {
             return "Name is required";
         }
     }
 
     validatePassword() {
-        const pass = this.state.password.value.trim();
+        const pass = this.state.user_password.value.trim();
         const pass2 = this.state.re_pass.value.trim();
         if (pass.length === 0) {
             return "Password is required"
@@ -75,10 +75,10 @@ class SignUp extends Component {
                 <div className="form group">
                     <label htmlFor="user_name">Username: </label>
                     <input type="text" name="user_name" onChange={e => this.updateName(e.target.value)}></input><br></br>
-                    {this.state.user_name.touched}
+                    {this.state.client_name.touched}
                     <label htmlFor="password">Password: </label>
                     <input type="text" name="password" onChange={e => this.updatePassword(e.target.value)}></input><br></br>
-                    {this.state.password.touched}
+                    {this.state.user_password.touched}
                     <label htmlFor="re_pass">Retype Password: </label>
                     <input type="text" name="re_pass" onChange={e => this.updateRe_pass(e.target.value)}></input><br></br>
                     {this.state.re_pass.touched}

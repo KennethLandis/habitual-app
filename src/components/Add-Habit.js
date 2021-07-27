@@ -23,9 +23,9 @@ class AddHabit extends Component {
             habit_id: (this.context.habits.length + 1).toString(),
             habit_name: e.target['habit_name'].value,
             days_completed: 0,
-            userId: (this.context.targetUser.userId)
+            client_id: (this.context.targetClient.id)
         }
-        this.props.history.push(`/user/${this.context.targetUser.userId}`)
+        this.props.history.push(`/user/${this.context.targetClient.id}`)
         this.context.addHabit(newHabit)
     }
 

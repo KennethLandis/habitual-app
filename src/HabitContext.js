@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default React.createContext({
-    users: [],
+    clients: [],
     habits: [],
-    targetUser: [],
-    setUser: () => {},
-    addUser: () => {},
+    targetClient: [],
+    setClient: () => {},
+    addClient: () => {},
     addHabit: () => {},
     deleteHabit: () => {},
     habitComplete: () => {},

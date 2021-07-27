@@ -1,11 +1,11 @@
-export const userHabits = (habits, userId) => (
+export const clientHabits = (habits, client_id) => (
     // eslint-disable-next-line
-    (!userId) ? habits : habits.filter(habit => habit.userId == userId))
+    (!client_id) ? habits : habits.filter(habit => habit.client_id == client_id))
 
-export const findUser = (users, userId) => 
+export const findClient = (clients, client_id) => 
     // eslint-disable-next-line
-    users.find(user => user.userId == userId)
+    clients.find(client => client.client_id == client_id)
 
-export const findUserByName = (users, user_name) =>
+export const findClientByName = (clients, client_name) =>
     // eslint-disable-next-line
-    users.find(user => user.user_name == user_name)
+    clients.find(client => client.client_name == client_name)

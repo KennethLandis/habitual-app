@@ -6,7 +6,25 @@ class Habit extends Component {
     static contextType = HabitContext
 
     deleteHabit(id) {
-        this.context.deleteHabit(id)
+        console.log(id)
+        //const api_url = process.env.REACT_APP_API_URL
+        fetch(`http://localhost:8000/habits/${id}`, {
+            method: `DELETE`
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response
+        })
+        .then(data => {
+            this.context.deleteHabit(id)
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     habitComplete(id) {
