@@ -9,3 +9,7 @@ export const findClient = (clients, client_id) =>
 export const findClientByName = (clients, client_name) =>
     // eslint-disable-next-line
     clients.find(client => client.client_name == client_name)
+
+export const findHabit = (habits, habit_id) =>
+    // eslint-disable-next-line
+    habits.find(habit => habit.id == habit_id)
