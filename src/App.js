@@ -31,8 +31,9 @@ class App extends Component {
       .then(([clients1, habits1]) => this.setState({
         clients: clients1,
         habits: habits1}))
+    };
+
     
-  };
 
   addClient = newClient => {
     const newClients = this.state.clients

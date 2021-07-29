@@ -36,7 +36,7 @@ class AddHabit extends Component {
         })
         .then(data => {
             console.log(data)
-            addHabit(newHabit)
+            addHabit(data)
         })
         .catch(error => {
             console.error(error)
