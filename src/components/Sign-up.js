@@ -34,7 +34,7 @@ class SignUp extends Component {
     }
 
     addClient(newClient, addClient) {
-        const api_url = process.REACT_APP_API_URL
+        const api_url = process.env.REACT_APP_API_URL
         fetch(`${api_url}/clients`, {
             method: `POST`,
             headers: { 'Content-type': 'application/json' },
