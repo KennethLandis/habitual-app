@@ -33,14 +33,39 @@ class SignUp extends Component {
         this.setState({ re_pass: { value: re_pass, touched: true}})
     }
 
+    addClient(newClient, addClient) {
+        const api_url = process.REACT_APP_API_URL
+        fetch(`${api_url}/clients`, {
+            method: `POST`,
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ 
+                    client_name: newClient.client_name,
+                    user_password: newClient.user_password
+             })
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(data => {
+            addClient(data)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        const newUser = {
-            userId: (this.context.clients.length + 1).toString(),
-            client_name: e.target['user_name'].value,
+        const newClient = {
+            client_name: e.target['client_name'].value,
             user_password: e.target['password'].value
         }
-        this.context.addUser(newUser)
+        this.addClient(newClient, this.context.addClient)
         this.props.history.push('/');
         alert('User Created! Now you can sign in.')
     }
@@ -73,8 +98,8 @@ class SignUp extends Component {
             <form className = "sign-up" onSubmit={e => this.handleSubmit(e)}>
                 <h2>Sign up</h2>
                 <div className="form group">
-                    <label htmlFor="user_name">Username: </label>
-                    <input type="text" name="user_name" onChange={e => this.updateName(e.target.value)}></input><br></br>
+                    <label htmlFor="client_name">Username: </label>
+                    <input type="text" name="client_name" onChange={e => this.updateName(e.target.value)}></input><br></br>
                     {this.state.client_name.touched}
                     <label htmlFor="password">Password: </label>
                     <input type="text" name="password" onChange={e => this.updatePassword(e.target.value)}></input><br></br>

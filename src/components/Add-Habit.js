@@ -19,8 +19,8 @@ class AddHabit extends Component {
 
     addHabit(newHabit, addHabit) {
         console.log(newHabit)
-        //const api_url = process.env.REACT_APP_API_URL
-        fetch(`http://localhost:8000/habits`, {
+        const api_url = process.env.REACT_APP_API_URL
+        fetch(`${api_url}/habits`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json' },

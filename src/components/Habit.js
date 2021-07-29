@@ -8,8 +8,8 @@ class Habit extends Component {
 
     deleteHabit(id) {
         console.log(id)
-        //const api_url = process.env.REACT_APP_API_URL
-        fetch(`http://localhost:8000/habits/${id}`, {
+        const api_url = process.env.REACT_APP_API_URL
+        fetch(`${api_url}}/${id}`, {
             method: `DELETE`
         })
         .then(response => {
@@ -29,9 +29,10 @@ class Habit extends Component {
     }
 
     habitComplete(id) {
+        const api_url= process.env.REACT_APP_API_URL
         const targetHabit = findHabit(this.context.habits, id);
         console.log(targetHabit)
-        fetch(`http://localhost:8000/habits/${id}`, {
+        fetch(`${api_url}/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json'
@@ -45,12 +46,12 @@ class Habit extends Component {
     }
 
     render() {
-        const { name, id, daysCompleted } = this.props
+        const { habit_name, id, daysCompleted } = this.props
     
         return (
             
             <div className="habit">
-                <h4>{name}</h4>
+                <h4>{habit_name}</h4>
                 <p>{daysCompleted}</p>
                 <button className='Habit-delete' type='button' onClick={() => {this.deleteHabit(id)}}>Delete Habit</button>
                 <button className='Habit-complete' type='button' onClick={() => {this.habitComplete(id)}}>Habit Complete</button>

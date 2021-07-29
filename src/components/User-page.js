@@ -21,9 +21,9 @@ class UserPage extends Component {
         const client = this.props.match.params
         const clients = this.context.clients
         const habits = this.context.habits
+        let target = parseInt(client.client_id)
         const displayHabits = clientHabits(habits, client.client_id)
-        const targetClient = findClient(clients, client.id)
-        console.log(habits)
+        const targetClient = findClient(clients, target)
         return (
             <section className='userPage'>
                 <h3>Welcome {targetClient.client_name}!  Manage your Habits below!</h3>
