@@ -6,7 +6,6 @@ import SignUp from './components/Sign-up';
 import UserPage from './components/User-page';
 import HabitContext from './HabitContext';
 import AddHabit from './components/Add-Habit';
-import { findHabit } from './find-functions';
 
 class App extends Component {
   state = {
@@ -72,24 +71,6 @@ class App extends Component {
         habit => habit.id === habitId ? {...habit, days_completed: (habit.days_completed + 1)}: habit
       )
     }))
-    const targetHabit = findHabit(this.state.habits, habitId);
-    const habitToUpdate = {
-      id: targetHabit.id,
-      name: targetHabit.name,
-      days_completed: (targetHabit.days_completed + 1),
-      client_id: targetHabit.client_id
-    }
-    console.log(habitToUpdate)
-    fetch(`http://localhost:8000/habits/${habitId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({habitToUpdate
-      })
-    })
-    .then(responseData => {
-      console.log(responseData)
-    })
-    .catch(error => console.log(error))
-    
   }
 
   setClient = newClient => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HabitContext from '../HabitContext';
+import { findHabit } from '../find-functions'
 
 class Habit extends Component {
 
@@ -28,7 +29,19 @@ class Habit extends Component {
     }
 
     habitComplete(id) {
-        this.context.habitComplete(id)
+        const targetHabit = findHabit(this.context.habits, id);
+        console.log(targetHabit)
+        fetch(`http://localhost:8000/habits/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(targetHabit)
+        })
+        .then(responseData => {
+            this.context.habitComplete(id)
+        })
+        .catch(error => console.log(error))
     }
 
     render() {
