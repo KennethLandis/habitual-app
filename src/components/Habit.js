@@ -36,7 +36,7 @@ class Habit extends Component {
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(targetHabit)
+        body: JSON.stringify({days_completed: (targetHabit.days_completed + 1)})
         })
         .then(responseData => {
             this.context.habitComplete(id)

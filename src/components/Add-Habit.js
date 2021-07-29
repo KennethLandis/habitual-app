@@ -17,21 +17,46 @@ class AddHabit extends Component {
         this.setState({ habit_name: { value: habit_name, touched: true}})
     }
 
+    addHabit(newHabit, addHabit) {
+        console.log(newHabit)
+        //const api_url = process.env.REACT_APP_API_URL
+        fetch(`http://localhost:8000/habits`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json' },
+            body: JSON.stringify( newHabit )
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            addHabit(newHabit)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const newHabit = {
-            habit_id: (this.context.habits.length + 1).toString(),
             habit_name: e.target['habit_name'].value,
-            days_completed: 0,
+            days_completed: (1),
             client_id: (this.context.targetClient.id)
         }
         this.props.history.push(`/user/${this.context.targetClient.id}`)
-        this.context.addHabit(newHabit)
+        this.addHabit(newHabit, this.context.addHabit)
     }
 
     validateName() {
-        const name = this.state.habit_name.value.trim();
-        if (name.length === 0) {
+        const habit_name = this.state.habit_name.value.trim();
+        if (habit_name.length === 0) {
             return "Habit name is required";
         }
     }

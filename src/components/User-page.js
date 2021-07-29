@@ -34,7 +34,7 @@ class UserPage extends Component {
                     <li key={habit.id}>
                         <Habit
                             id={habit.id}
-                            name={habit.name}
+                            name={habit.habit_name}
                             daysCompleted={habit.days_completed}
                         />
                     </li>
