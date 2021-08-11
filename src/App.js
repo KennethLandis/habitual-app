@@ -16,7 +16,6 @@ class App extends Component {
 
   componentDidMount() {
     const api_url = process.env.REACT_APP_API_URL
-    console.log(api_url)
     Promise.all([
       fetch(`${api_url}/clients`),
       fetch(`${api_url}/habits`)

@@ -7,7 +7,6 @@ class Habit extends Component {
     static contextType = HabitContext
 
     deleteHabit(id) {
-        console.log(id)
         const api_url = process.env.REACT_APP_API_URL
         fetch(`${api_url}/habits/${id}`, {
             method: `DELETE`
@@ -31,7 +30,6 @@ class Habit extends Component {
     habitComplete(id) {
         const api_url= process.env.REACT_APP_API_URL
         const targetHabit = findHabit(this.context.habits, id);
-        console.log(targetHabit)
         fetch(`${api_url}/habits/${id}`, {
         method: 'PATCH',
         headers: {
