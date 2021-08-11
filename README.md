@@ -7,5 +7,7 @@ Screenshot:
 ![image](https://user-images.githubusercontent.com/67128061/129076997-62eeacc1-c6df-4ebb-ba89-284721c965b8.png)
 
 Live link: https://habitual-app-9a0jvj6na-kennethlandis.vercel.app/
+
 Technology: This app was built using React Html Css Javascript jQuery Express Node.js PSQL
+
 Server github: https://github.com/KennethLandis/habitual-api
