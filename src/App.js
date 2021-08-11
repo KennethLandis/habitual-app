@@ -127,7 +127,7 @@ class App extends Component {
           component={AddHabit}
         />
         <footer className="footer">
-          Kenneth Landis copyright thing
+          Kenneth Landis ©
         </footer>
       </div>
       </HabitContext.Provider>
