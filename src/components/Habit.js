@@ -52,7 +52,7 @@ class Habit extends Component {
             
             <div className="habit">
                 <h4>{habit_name}</h4>
-                <p>{daysCompleted}</p>
+                <p>Days Completed: {daysCompleted}</p>
                 <button className='Habit-delete' type='button' onClick={() => {this.deleteHabit(id)}}>Delete Habit</button>
                 <button className='Habit-complete' type='button' onClick={() => {this.habitComplete(id, this.context.deleteHabit())}}>Habit Complete</button>
             </div>

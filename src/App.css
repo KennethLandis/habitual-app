@@ -39,7 +39,8 @@
 }
 
 .habit {
-  background-color: slategray;
+  background-color: #1b2025;
+  color: white;
   padding: 20px;
   margin: 10px;
   margin-right: 40px;
@@ -63,5 +64,14 @@ h3 {
 }
 
 .button {
-  margin: 5px;
+  margin-left: 5px;
+  padding: 10px;
+}
+
+.Habit-complete {
+  margin: 10px;
+}
+
+.sign-in-reset {
+  margin: 10px;
 }
