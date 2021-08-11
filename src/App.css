@@ -1,9 +1,13 @@
 .App {
   text-align: center;
   background-color: #282c34;
+  margin: 0;
+  padding: 0;
 }
 
 .App-header {
+  padding: 0;
+  margin: 0;
   background-color: #282c34;
   min-height: 20vh;
   display: flex;
@@ -15,6 +19,8 @@
 }
 
 .main {
+  padding: 0;
+  margin: 0;
   background-color: #282c34;
   color: white;
   font-size: 25px;
@@ -22,6 +28,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 60vh;
   height: 100%;
 }
 
@@ -31,6 +38,10 @@
 }
 
 .footer {
+  margin: 0;
+  padding: 0;
+  background-color: #282c34;
+  min-height: 20vh;
   color: white;
 }
 
