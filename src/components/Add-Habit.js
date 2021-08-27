@@ -18,7 +18,6 @@ class AddHabit extends Component {
     }
 
     addHabit(newHabit, addHabit) {
-        console.log(newHabit)
         const api_url = process.env.REACT_APP_API_URL
         fetch(`${api_url}/habits`, {
             method: 'POST',
@@ -35,7 +34,6 @@ class AddHabit extends Component {
             return response.json()
         })
         .then(data => {
-            console.log(data)
             addHabit(data)
         })
         .catch(error => {

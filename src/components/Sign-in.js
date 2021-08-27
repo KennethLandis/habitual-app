@@ -82,7 +82,7 @@ class SignIn extends Component {
                         {this.state.client_name.touched}
                     <label htmlFor="password">Password: </label>
                     <input
-                        type="text"
+                        type="password"
                         className="sign-in-control"
                         name="password"
                         id="password"

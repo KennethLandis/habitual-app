@@ -102,7 +102,7 @@ class SignUp extends Component {
                     <input type="text" name="client_name" onChange={e => this.updateName(e.target.value)}></input><br></br>
                     {this.state.client_name.touched}
                     <label htmlFor="password">Password: </label>
-                    <input type="text" name="password" onChange={e => this.updatePassword(e.target.value)}></input><br></br>
+                    <input type="password" name="password" onChange={e => this.updatePassword(e.target.value)}></input><br></br>
                     {this.state.user_password.touched}
                     <label htmlFor="re_pass">Retype Password: </label>
                     <input type="text" name="re_pass" onChange={e => this.updateRe_pass(e.target.value)}></input><br></br>
